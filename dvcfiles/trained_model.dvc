@@ -1,0 +1,5 @@
+wdir: ../models
+outs:
+- md5: 807ae5b8a2c3da372f65b711f52890d4
+  size: 9099215
+  path: best_model.pt
