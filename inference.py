@@ -15,10 +15,11 @@ def processing_image(image_path):
 def predict(image):
     model = torchvision.models.mobilenet_v2(pretrained=False)
     model.classifier[1] = torch.nn.Linear(in_features=model.classifier[1].in_features, out_features=2, bias=True)
-    model.load_state_dict(torch.load('best_model.pt'))
+    model.load_state_dict(torch.load('models/best_model.pt'))
     model.eval()
     output = model(image)
     _, pred = torch.max(output, dim=1)
+    pred = pred.item()
     return pred
 
 if __name__ == '__main__':
@@ -26,10 +27,10 @@ if __name__ == '__main__':
         0: 'Cat',
         1: 'Dog'
     }
-    image = processing_image('dataset/train/Cat_1557.jpg')
+    image = processing_image('dataset/train/Dog_10833.jpg')
     transforms = get_valid_transforms()
     image = transforms(image=image)['image']
     image = torch.unsqueeze(image, 0)
     output = predict(image)
-    if output.item() in list(labels.keys()):
-        print(labels[output.item()])
+    if output in list(labels.keys()):
+        print(labels[output])
