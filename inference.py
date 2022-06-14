@@ -18,19 +18,16 @@ def predict(image):
     model.load_state_dict(torch.load('models/best_model.pt'))
     model.eval()
     output = model(image)
+    print(output.shape)
     _, pred = torch.max(output, dim=1)
     pred = pred.item()
     return pred
 
 if __name__ == '__main__':
-    labels = {
-        0: 'Cat',
-        1: 'Dog'
-    }
-    image = processing_image('dataset/train/Dog_10833.jpg')
+    labels = ['Cat', 'Dog']
+    image = processing_image('../dataset/train/Dog_10833.jpg')
     transforms = get_valid_transforms()
     image = transforms(image=image)['image']
     image = torch.unsqueeze(image, 0)
-    output = predict(image)
-    if output in list(labels.keys()):
-        print(labels[output])
+    pred = predict(image)
+    print(labels[pred])

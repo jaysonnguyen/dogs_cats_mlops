@@ -10,3 +10,4 @@ albumentations==0.4.6
 wandb
 dvc
 dvc[s3]
+onnxruntime
