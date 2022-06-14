@@ -25,25 +25,28 @@ class DogAndCat(Dataset):
         image = cv2.imread(f'{self.data_dir}/{image}', cv2.IMREAD_COLOR)
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB).astype(np.float32)
         image /= 255.0
+
         classes = ['Dog', 'Cat']
         lb = LabelEncoder()
         lb.fit_transform(classes)
         label = lb.transform([label])
-        label = torch.tensor(label)
+        label = torch.tensor(int(label[0]))
         if self.transforms:
-            image = self.transforms(image)
+            image = self.transforms(image=image)['image']
         return image, label
 
 
 def get_train_transforms():
     return A.Compose([
-        A.Resize(256, 256, p=1.0),
+        A.Resize(128, 128, p=1.0),
+        A.Flip(always_apply=True, p=0.5),
+        A.RandomBrightnessContrast(p=0.2),
         ToTensorV2(p=1.0)
     ])
 
 def get_valid_transforms():
     return A.Compose([
-        A.Resize(256, 256, p=1.0),
+        A.Resize(128, 128, p=1.0),
         ToTensorV2(p=1.0)
     ])
 
