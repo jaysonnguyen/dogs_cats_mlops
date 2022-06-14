@@ -7,8 +7,8 @@ from tqdm import tqdm
 
 if __name__ == '__main__':
     epochs = 10
-    train_dir = 'train'
-    valid_dir = 'valid'
+    train_dir = 'data/train'
+    valid_dir = 'data/valid'
     train_dataset = DogAndCat(train_dir, get_train_transforms())
     valid_dataset = DogAndCat(valid_dir, get_valid_transforms())
     train_dataloader = get_train_dataloader(train_dataset, 16)

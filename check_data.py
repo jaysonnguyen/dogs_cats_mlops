@@ -2,8 +2,8 @@ import os
 import cv2
 
 
-train_dir = 'train'
-valid_dir = 'valid'
+train_dir = 'data/train'
+valid_dir = 'data/valid'
 
 train_images = os.listdir(train_dir)
 valid_images = os.listdir(valid_dir)
