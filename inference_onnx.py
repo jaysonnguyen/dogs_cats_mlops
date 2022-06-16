@@ -27,6 +27,6 @@ def predict(image):
 
 if __name__ == '__main__':
     labels = ['Cat', 'Dog']
-    image = processing_image('../dataset/train/Dog_10833.jpg')
+    image = processing_image('Cat_1558.jpg')
     pred = predict(image)
     print(labels[pred])

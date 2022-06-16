@@ -11,6 +11,8 @@ async def home():
 async def get_prediction(image_path: str):
     labels = ['Cat', 'Dog']
     img = inference_onnx.processing_image(image_path)
-    result = inference_onnx.predict(img)
-    print(result)
-    return labels[result]
+    pred = inference_onnx.predict(img)
+    result = {
+        'result': labels[pred],
+    }
+    return result
