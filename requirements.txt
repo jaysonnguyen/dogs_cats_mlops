@@ -11,3 +11,5 @@ wandb
 dvc
 dvc[s3]
 onnxruntime
+fastapi
+uvicorn[standard]
