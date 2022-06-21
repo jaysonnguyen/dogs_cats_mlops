@@ -1,11 +1,33 @@
 FROM python:3.8.13
 COPY ./ /app
 WORKDIR /app
+
+# install requirements
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends apt-utils
 RUN pip install -r requirements.txt
+
+# aws credentials
+ARG AWS_ACCESS_KEY_ID
+ARG AWS_SECRET_ACCESS_KEY
+
+ENV AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
+    AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+
+# initialize dvc
+RUN dvc init --no-scm
+
+# configuring remote server in dvc
+RUN dvc remote add -d myremote s3://dogs-and-cats/models
+
+RUN cat .dvc/config 
+
+# pulling the trained model
+RUN dvc pull dvcfiles/trained_model.dvc
+
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
+
+# running the applications
 EXPOSE 8000
-# CMD ["python", "inference_onnx.py"]
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]

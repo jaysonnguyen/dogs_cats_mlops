@@ -2,6 +2,9 @@ version: "3"
 services:
     prediction_api:
         build: .
+        environment:
+            - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+            - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
         container_name: "inference_container"
         ports:
             - "8000:8000"
