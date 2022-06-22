@@ -37,5 +37,5 @@ ENV LANG=C.UTF-8
 
 # running the applications
 RUN chmod -R 0755 $MODEL_DIR
-ENTRYPOINT ["/usr/local/bin/python", "-m", "/app"]
+ENTRYPOINT ["/usr/local/bin/python"]
 CMD ["lambda_handler.lambda_handler"]
