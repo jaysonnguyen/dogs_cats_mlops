@@ -16,10 +16,10 @@ ENV AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID \
     AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
 
 # initialize dvc
-RUN dvc init --no-scm 
+RUN dvc init --no-scm -f
 
 # configuring remote server in dvc
-RUN dvc remote add -d myremote s3://dogs-and-cats/models
+RUN dvc remote add -d model-store s3://dogs-and-cats/models/
 
 RUN cat .dvc/config 
 
