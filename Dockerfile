@@ -1,12 +1,19 @@
 FROM python:3.8.13
-COPY ./ /app
-WORKDIR /app
+COPY ./ ./
+
+ENV PYTHONPATH "${PYTHONPATH}:./"
 
 # install requirements
 RUN apt-get update
 RUN pip install --upgrade pip
 RUN pip install "dvc[s3]"
 RUN pip install -r requirements.txt
+
+# model dir
+ARG MODEL_DIR=./models
+
+ENV TRANSFORMERS_CACHE=$MODEL_DIR \
+    TRANSFORMERS_VERBOSITY=error
 
 # aws credentials
 ARG AWS_ACCESS_KEY_ID
@@ -31,5 +38,5 @@ ENV LANG=C.UTF-8
 
 # running the applications
 RUN python lambda_handler.py 
-RUN chmod -R 0755 models/
+RUN chmod -R 0755 $MODEL_DIR
 CMD ["lambda_handler.lambda_handler"]
