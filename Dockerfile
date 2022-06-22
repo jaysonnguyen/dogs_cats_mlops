@@ -30,5 +30,6 @@ ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 
 # running the applications
-EXPOSE 8000
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+RUN python lambda_handler.py 
+RUN chmod -R 0755 models/
+CMD ["lambda_handler.lambda_handler"]
