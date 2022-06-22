@@ -2,8 +2,6 @@ FROM python:3.8.13
 COPY ./ /app
 WORKDIR /app
 
-ENV PYTHONPATH "${PYTHONPATH}:/app"
-
 # install requirements
 RUN apt-get update
 RUN pip install --upgrade pip
