@@ -1,4 +1,4 @@
-name: Create Docker Container Push2ECR
+name: Create Docker Container And Push2ECR
 on:
   push:
     branches:
