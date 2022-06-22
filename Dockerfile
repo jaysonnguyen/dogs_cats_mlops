@@ -4,7 +4,7 @@ COPY ./ ./
 ENV PYTHONPATH "${PYTHONPATH}:./"
 
 # install requirements
-RUN apt-get update
+RUN yum install git -y && yum -y install gcc-c++
 RUN pip install --upgrade pip
 RUN pip install "dvc[s3]"
 RUN pip install -r requirements.txt
