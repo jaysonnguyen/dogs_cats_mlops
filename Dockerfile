@@ -1,6 +1,5 @@
-FROM python:3.8.13
-COPY ./ /app
-WORKDIR /app
+FROM public.ecr.aws/lambda/python:3.8
+COPY ./ ./
 
 ENV PYTHONPATH "${PYTHONPATH}:./"
 
@@ -39,5 +38,4 @@ ENV LANG=C.UTF-8
 
 # running the applications
 RUN chmod -R 0755 $MODEL_DIR
-# ENTRYPOINT ["/usr/local/bin/python"]
 CMD ["lambda_handler.lambda_handler"]
