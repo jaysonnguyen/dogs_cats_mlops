@@ -4,7 +4,8 @@ WORKDIR /app
 
 # install requirements
 RUN apt-get update
-RUN apt-get install -y --no-install-recommends apt-utils
+RUN pip install --upgrade pip
+RUN pip install "dvc[s3]"
 RUN pip install -r requirements.txt
 
 # aws credentials
