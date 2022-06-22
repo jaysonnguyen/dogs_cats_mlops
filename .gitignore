@@ -1,3 +1,10 @@
 dataset/
 __pycache__
 wandb
+venv/
+.vscode/
+data/
+manila.py 
+TheManilaTimes.json
+TSD.json
+Cat_1558.jpg
