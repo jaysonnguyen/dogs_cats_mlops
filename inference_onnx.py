@@ -2,10 +2,20 @@ import numpy as np
 import onnxruntime as ort
 import cv2
 import torch
+import base64
+import uuid
 from data import get_valid_transforms
 import warnings
 warnings.filterwarnings('ignore')
 
+
+def base64_to_image(base64_value):
+    image_data = base64.b64decode(base64_value)
+    file_name = f'{uuid.uuid4()}.jpg'
+    with open(file_name, 'wb') as f:
+        f.write(image_data)
+    f.close()
+    return file_name
 
 def processing_image(image_path):
     image = cv2.imread(image_path, cv2.IMREAD_COLOR)
@@ -27,6 +37,8 @@ def predict(image):
 
 if __name__ == '__main__':
     labels = ['Cat', 'Dog']
-    image = processing_image('Cat_1558.jpg')
+    b64_value = ""
+    image_path = base64_to_image(b64_value)
+    image = processing_image(image_path)
     pred = predict(image)
     print(labels[pred])
