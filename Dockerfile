@@ -1,10 +1,11 @@
 FROM public.ecr.aws/lambda/python:3.8
 COPY ./ ./
+COPY lambda_handler.py ${LAMBDA_TASK_ROOT}
 
 ENV PYTHONPATH "${PYTHONPATH}:./"
 
 # install requirements
-RUN yum update & yum install ffmpeg libsm6 libxext6 -y
+RUN yum update
 RUN yum install git -y && yum -y install gcc-c++
 RUN pip install --upgrade pip
 RUN pip install "dvc[s3]"
