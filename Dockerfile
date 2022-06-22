@@ -2,6 +2,8 @@ FROM python:3.8.13
 COPY ./ /app
 WORKDIR /app
 
+ENV PYTHONPATH "${PYTHONPATH}:./"
+
 # install requirements
 RUN apt-get update
 RUN pip install --upgrade pip
@@ -37,5 +39,5 @@ ENV LANG=C.UTF-8
 
 # running the applications
 RUN chmod -R 0755 $MODEL_DIR
-ENTRYPOINT ["/usr/local/bin/python"]
+# ENTRYPOINT ["/usr/local/bin/python"]
 CMD ["lambda_handler.lambda_handler"]
