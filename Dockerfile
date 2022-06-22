@@ -5,7 +5,7 @@ COPY lambda_handler.py ${LAMBDA_TASK_ROOT}
 ENV PYTHONPATH "${PYTHONPATH}:./"
 
 # install requirements
-RUN yum update
+RUN yum update -y
 RUN yum install git -y && yum -y install gcc-c++
 RUN pip install --upgrade pip
 RUN pip install "dvc[s3]"
