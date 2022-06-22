@@ -1,16 +1,14 @@
-# FROM public.ecr.aws/lambda/python:3.8
-FROM amazon/aws-lambda-python
-
+FROM public.ecr.aws/lambda/python:3.8
 COPY ./ ./
 
+ENV PYTHONPATH "${PYTHONPATH}:./"
+
 # install requirements
+RUN yum update & yum install ffmpeg libsm6 libxext6 -y
 RUN yum install git -y && yum -y install gcc-c++
 RUN pip install --upgrade pip
 RUN pip install "dvc[s3]"
 RUN pip install -r requirements.txt
-
-
-ENV PYTHONPATH "${PYTHONPATH}:./"
 
 # model dir
 ARG MODEL_DIR=./models
