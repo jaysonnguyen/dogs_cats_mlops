@@ -1,11 +1,10 @@
 import json
-from inference_onnx import base64_to_image, processing_image, predict
+from inference_onnx import processing_image, predict
 
 def lambda_handler(event, context):
     b64_value = event['b64_image']
-    print(f"Got the input base64: {b64_value}")
-    image_path = base64_to_image(b64_value)
-    image = processing_image(image_path)
+    print(f"Got the input base64")
+    image = processing_image(b64_value)
     response = predict(image)
     return {
         'statusCode': 200,
