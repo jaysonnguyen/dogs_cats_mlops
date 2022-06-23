@@ -1,5 +1,5 @@
 import json
-from inference_onnx import base64_to_image, processing_image, predict
+from inference_onnx import processing_image, predict
 
 def lambda_handler(event, context):
     if 'resource' in event.keys():
