@@ -10,4 +10,3 @@ onnxruntime
 fastapi
 uvicorn[standard]
 boto3
-opencv-python

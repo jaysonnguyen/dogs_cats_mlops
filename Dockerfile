@@ -6,7 +6,7 @@ ENV PYTHONPATH "${PYTHONPATH}:./"
 
 # install requirements
 RUN yum update -y
-RUN yum install git -y && yum -y install gcc-c++
+RUN yum install git -y && yum -y install gcc-c++ && yum install opencv-python
 RUN pip install --upgrade pip
 RUN pip install "dvc[s3]"
 RUN pip install -r requirements.txt
