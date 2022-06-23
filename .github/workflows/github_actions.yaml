@@ -2,7 +2,7 @@ name: Create Docker Container And Push2ECR
 on:
   push:
     branches:
-      feature/aws-lambda
+      master
 jobs:
   mlops-container:
     runs-on: ubuntu-latest

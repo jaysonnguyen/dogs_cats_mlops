@@ -20,17 +20,17 @@ def processing_image(base64_value):
     return image
 
 def predict(image):
+    labels = ['Cat', 'Dog']
     ort_session = ort.InferenceSession('models/best_model.onnx')
     ort_inputs = {
         'modelInput': image.numpy()
     }
     ort_outs = ort_session.run(None, ort_inputs)
     pred = np.argmax(ort_outs)
-    return pred
+    return labels[pred]
 
 if __name__ == '__main__':
-    labels = ['Cat', 'Dog']
     b64_value = ""
     image = processing_image(b64_value)
     pred = predict(image)
-    print(labels[pred])
+    print(pred)
