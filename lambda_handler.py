@@ -9,5 +9,5 @@ def lambda_handler(event, context):
     return {
         'statusCode': 200,
         'headers': {},
-        'predicted': response
+        'predicted': json.dumps(response)
     }
