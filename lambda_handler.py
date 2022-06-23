@@ -11,7 +11,7 @@ def lambda_handler(event, context):
         return {
             'statusCode': 200,
             'headers': {},
-            'predicted': json.dumps(response)
+            'predicted': response
         }
     else:
         image = processing_image(event['b64_image'])
@@ -19,5 +19,5 @@ def lambda_handler(event, context):
         return {
             'statusCode': 200,
             'headers': {},
-            'predicted': json.dumps(response)
+            'predicted': response
         }
